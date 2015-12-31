@@ -3,60 +3,44 @@ package bataille;
 public class CardBattle {
 	
 	private int color;
-	private int value;
-	
+	private int value;	
 	
 	public CardBattle(int color, int value) {
 		this.color=color;
 		this.value=value;		
 	}
 
-
-	public int getColor() {
+	public int getColor() 
+	{
 		return color;
 	}
-
-
-	public void setColor(int color) {
-		this.color = color;
-	}
-
 
 	public int getValue() {
 		return value;
 	}
 
-
-	public void setValue(int value) {
-		this.value = value;
-	}
-
-	
-	
 	public String compare(CardBattle c){
 	
 		String comparison;
-		if(this.value==c.getValue()){
+		
+		if(this.value==c.getValue())
 			comparison = "=";			
-		}else if (this.value < c.getValue()){
+		else if (this.value < c.getValue())
 			comparison = "-";
-			
-		}else  {
+		else  
 			comparison = "+";
-			
-		}
+		
 		return comparison;	
-		
-		
 	}
 	
 	
-	public String toString(){
+	public String toString()
+	{
 		String col = null;
-		String val=null;
+		String val=null;		
 		
-		
-		switch(color){
+		switch(color)
+		{
 			case 1:
 				col ="coeur";
 				break;
@@ -68,14 +52,11 @@ public class CardBattle {
 				break;
 			case 4:				
 				col ="pique";
-				break;	
-			
+				break;			
 		}
 	
-		
-		
-		
-		switch(value){
+		switch(value)
+		{
 		case 14:
 			val="as";
 			break;
@@ -114,16 +95,14 @@ public class CardBattle {
 			break;	
 		case 2:
 			val="deux";
-			break;
-		
+			break;	
 		}
-		
-		return val+" de "+col;
-		
+		return val+" de "+col;		
 	}
 
 
-	public boolean equals(Object obj){ //Pour que la methode contains dans Bataille.java fonctionne correctement
+	public boolean equals(Object obj)
+	{ 
 		return ((CardBattle)obj).color==this.color && ((CardBattle)obj).value==this.value;
 	}
 	
