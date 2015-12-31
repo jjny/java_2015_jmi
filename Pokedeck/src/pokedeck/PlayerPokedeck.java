@@ -1,42 +1,38 @@
 package pokedeck;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
-
-
-
-public class PlayerPokedeck implements Serializable{
-
+public class PlayerPokedeck implements Serializable
+{
 
 	private static final long serialVersionUID = 1L;
 	private String pseudo;
 	private ArrayList<Card> cardGame ;
-	//private Scanner choice=new Scanner(System.in);
 	
-	
-	public PlayerPokedeck (String pseudo, ArrayList<Card> cardGame){
+	public PlayerPokedeck (String pseudo, ArrayList<Card> cardGame)
+	{
 		this.pseudo=pseudo;
 		this.cardGame=cardGame;
-			
 	}
 	
-	public String getPseudo() {
+	public String getPseudo() 
+	{
 		return pseudo;
 	}
-	public void setPseudo(String pseudo) {
+	public void setPseudo(String pseudo)
+	{
 		this.pseudo = pseudo;
 	}
-	public ArrayList<Card> getCardGame() {
+	public ArrayList<Card> getCardGame() 
+	{
 		return cardGame;
 	}
-	public void setCardGame(ArrayList<Card> cardGame) {
+	public void setCardGame(ArrayList<Card> cardGame)
+	{
 		this.cardGame = cardGame;
 	}
-	
-	
 	
 	
 	/**
@@ -51,8 +47,7 @@ public class PlayerPokedeck implements Serializable{
 		CardPokemon newPokemon=new CardPokemon(1,numberCard,name,level,hp);
 		collect.add(newPokemon);
 		consultCardGame(collect);
-		return collect;
-		
+		return collect;	
 	}
 	
 	public ArrayList<Card> addCardEngery(ArrayList<Card> collect, int numberCard,int energyType){		
@@ -83,25 +78,18 @@ public class PlayerPokedeck implements Serializable{
 	
 	
 	
-	public boolean deleteCard(int num, ArrayList<Card> collect){
+	public boolean deleteCard(int num, ArrayList<Card> collect)
+	{
 		ListIterator<Card> ite=collect.listIterator();
 		boolean test=false;
 		while(ite.hasNext()){
 			Card a = ite.next();	
 			if(a.getNumberCard()==num){
 				ite.remove();
-				/*if(collect.size()!=0){
-					
-					consultCardGame(collect);
-					
-				}*/
 				test=true;
 			}
-		}
-		
+		}		
 		return test;
-		
-		
 	}
 	
 	
@@ -113,16 +101,12 @@ public class PlayerPokedeck implements Serializable{
 	 *  
 	 */
 	
-	public void consultCardGame(ArrayList<Card> collect){
-		//System.out.println("CARD GAME");
+	public void consultCardGame(ArrayList<Card> collect)
+	{
 		for(Card obj: collect){
 			System.out.println(obj.toString());
 		}
 	}
-	
-	
-	
-
 	
 	
 	
@@ -136,23 +120,19 @@ public class PlayerPokedeck implements Serializable{
 	 */
 	
 
-	public void searchCardByNumber(int num,ArrayList<Card> collect){
+	public void searchCardByNumber(int num,ArrayList<Card> collect)
+	{
 		ListIterator<Card> ite=collect.listIterator();
 		Card a=null;
 		while(ite.hasNext()){
 			 a = ite.next();
-			if(a.getNumberCard()==num){
+			if(a.getNumberCard()==num)
 				System.out.println(a.toString());
-			}
-			else{
-				a=null;
-			}
-			
+			else
+				a=null;	
 		}	
-		if(a==null){
-			System.out.println("No card correspond to it card number \n\n");
-		}
-		
+		if(a==null)
+			System.out.println("No card correspond to it card number \n\n");		
 	}
 
 	/**
@@ -164,22 +144,19 @@ public class PlayerPokedeck implements Serializable{
 	 *  
 	 */
 	
-	public void searchCardByName(String name,ArrayList<Card> collect){
-		
+	public void searchCardByName(String name,ArrayList<Card> collect)
+	{	
 		ListIterator<Card> ite2= collect.listIterator();
 		Card a=null;
 		while(ite2.hasNext()){
 			a = ite2.next();
-			if (a.equals_name(name)){
+			if (a.equals_name(name))
 				System.out.println(a.toString());				
-			}else{
-					a=null;
-				}
-				
+			else
+				a=null;	
 			}	
-			if(a==null){
-				System.out.println("No card correspond to it card name \n\n");
-			}	
+			if(a==null)
+				System.out.println("No card correspond to it card name \n\n");			
 	}
 	
 	
@@ -192,7 +169,8 @@ public class PlayerPokedeck implements Serializable{
 	 *  
 	 */
 
-	public void searchCardByType(String type,ArrayList<Card> collect){
+	public void searchCardByType(String type,ArrayList<Card> collect)
+	{
 		int cardType = 0;
 		
 		switch(type){
@@ -217,21 +195,17 @@ public class PlayerPokedeck implements Serializable{
 				break;		
 		}
 		
-
 		ListIterator<Card> ite=collect.listIterator();
 		Card a=null;
 		while(ite.hasNext()){
 			 a = ite.next();
-			if(a.getType()==cardType){
+			if(a.getType()==cardType)
 				System.out.println(a.toString());
-			}else{
+			else
 				a=null;
-			}
-			
 		}	
-		if(a==null){
+		if(a==null)
 			System.out.println("No card correspond to it card type \n\n");
-		}	
 	}
 }
 

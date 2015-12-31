@@ -22,7 +22,8 @@ public class Game{
 	
 	/**
 	 * 
-	 *   MAIN MENU
+	 *   Main menu
+	 *   
 	 *  
 	 *  @param1 player
 	 *  @param2 card game
@@ -108,6 +109,11 @@ public class Game{
 		}
 	}
 	
+	/**
+	 * Cards search menu
+	 * 
+	 * @return choice_card_type
+	 */
 	
 	public void submenu_search(){		
 		try
@@ -133,6 +139,11 @@ public class Game{
 		}
 	
 	
+	/**
+	 * Return card type selected
+	 * 
+	 * @return choice_card_type
+	 */
 	
 	public int choiceCardType(){
 		int choice_card_type=0;	
@@ -161,6 +172,14 @@ public class Game{
 		
 		return choice_card_type;	
 	}
+	
+	
+	/**
+	 * Return energy type selected
+	 * 
+	 * @return energyType
+	 */
+	
 	
 	public int choiceEnergyType(){
 		int energyType=0;
@@ -450,7 +469,11 @@ public class Game{
 	
 
 	
-	
+	/**
+	 * Pokemon cards menu to update 
+	 * 
+	 * @return chance
+	 */
 	public int update_menu_field_pokemon(){
 		int change=0;
 		try{
@@ -480,6 +503,12 @@ public class Game{
 		
 	}
 	
+	/**
+	 * Energy cards menu to update 
+	 * 
+	 * @return chance
+	 */
+	
 	public int update_menu_field_energy(){
 		int change=0;
 		try{
@@ -505,6 +534,12 @@ public class Game{
 			}	
 		return change;
 	}
+	
+	/**
+	 * Trainer cards menu to update 
+	 * 
+	 * @return chance
+	 */
 	
 	public int update_menu_field_trainer(){
 		int change=0;
@@ -533,29 +568,7 @@ public class Game{
 		return change;
 	}
 	
-	
-/*	public void update_fields(Card card_iterator, int numberCard){
-		if(card_iterator.getNumberCard()==numberCard){
-			try{
-				
-				
-			}catch (InputMismatchException e) {
-				System.out.println("------------------\n"
-		  				  +"--Invalid value!--\n"
-		  				  +"----Try again----- \n"
-		  				  +"------------------\n");
-	    choice.nextLine();
-	    update_name(card_iterator,numberCard);
-		} 
-		catch (Exception e){
-			  System.out.println(e);
-			}	
-		}
-	submenu();
-			
-				
-		
-	}*/
+
 	
 	public void update_name(Card card_iterator, int numberCard){
 		//Scanner strName= new Scanner(System.in);	
@@ -666,7 +679,7 @@ public class Game{
 		}
 		submenu();	
 	}
-	
+
 	public void update_menu_trainerType(Card card_iterator, int numberCard){
 		if(card_iterator.getNumberCard()==numberCard){
 			int typeTrainer=0;
@@ -778,7 +791,7 @@ public class Game{
 	
 	public void save_processing(PlayerPokedeck player, ArrayList<Card> collection){
 		try{
-			System.out.println("write name save you want show");
+			System.out.println("Name save ?");
 			String name=choice.nextLine();
 			
 			save(name+".dat",collection/*,player*/);
@@ -962,11 +975,7 @@ public class Game{
 			fileIn=null;
 		}
 		return player;
-		
 	}
-
-	
-	
 }
 
 

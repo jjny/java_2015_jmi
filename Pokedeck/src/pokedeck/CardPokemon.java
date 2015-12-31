@@ -1,20 +1,14 @@
 package pokedeck;
 
-
-
-
-public class CardPokemon extends Card{
-	
-	/**
-	 * 
-	 */
+public class CardPokemon extends Card
+{
 	private static final long serialVersionUID = 1L;
 	protected int level;
 	protected int hp;
 	String name;
-	
 
-	public CardPokemon(int type, int numberCard, String name, int level, int hp) {
+	public CardPokemon(int type, int numberCard, String name, int level, int hp)
+	{
 		super(type, numberCard);
 		this.level=level;
 		this.hp=hp;
@@ -22,52 +16,54 @@ public class CardPokemon extends Card{
 		// TODO Auto-generated constructor stub
 	}
 
-	public String getName() {
+	public String getName() 
+	{
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(String name) 
+	{
 		this.name = name;
 	}  
 	
 	
-	public int getLevel() {
+	public int getLevel()
+	{
 		return level;
 	}
 
-
-	public void setLevel(int level) {
+	public void setLevel(int level)
+	{
 		this.level = level;
 	}
 
-
-	public int getHp() {
+	public int getHp() 
+	{
 		return hp;
 	}
 
-
-	public void setHp(int hp) {
+	public void setHp(int hp)
+	{
 		this.hp = hp;
 	}
 	
-	
-
-	public boolean equals_name(String name) { 
+	public boolean equals_name(String name)
+	{ 
 		return name.equals(this.name);
 	}
 	
-	public String toString(){
+	public String toString()
+	{
 		String s;
 		String lvl=null;
 		String cardType=null;
-		if (level==1){
+		if (level==1)
 			lvl="base (lvl 1)";
-		}else{
-			
+		else
 			lvl=Integer.toString(this.getLevel());
-		}
 		
-		switch(type){
+		switch(type)
+		{
 		case 1:
 			cardType ="Pokemon";
 			break;
@@ -86,8 +82,7 @@ public class CardPokemon extends Card{
 		+  "          Name : "+this.getName()+     "\n"
 		+  "        Number : "+this.getNumberCard()+     "\n"
 		+  "------------------------------- \n");
-				
-				
+		
 		return s;
 	}
 

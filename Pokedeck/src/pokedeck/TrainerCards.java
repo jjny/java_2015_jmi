@@ -1,21 +1,20 @@
 package pokedeck;
 
-
-public class TrainerCards extends Card {
-
+public class TrainerCards extends Card 
+{
 	private static final long serialVersionUID = 1L;
 	private int trainerType;
 	private String name;
 	private String infos;
 
-	public TrainerCards(int type, int numberCard, String name, int trainerType, String infos) {
+	public TrainerCards(int type, int numberCard, String name, int trainerType, String infos) 
+	{
 		super(type, numberCard);
 		this.name=name;
 		this.trainerType=trainerType;
 		this.infos=infos;
 	}
 
-	
 	public String getName() {
 		return name;
 	}
@@ -23,7 +22,6 @@ public class TrainerCards extends Card {
 	public void setName(String name) {
 		this.name = name;
 	}  
-	
 	
 	public int getTrainerType() {
 		return trainerType;
@@ -43,20 +41,19 @@ public class TrainerCards extends Card {
 		this.infos = infos;
 	}
 
-	
-	
-	
-	  public boolean equals_name(String name) { 
+	  public boolean equals_name(String name)
+	  { 
 		  return name.equals(this.name);
-		  }
-	  
-	  
-	public String toString(){
+	}
+  
+	public String toString()
+	{
 		String s;
 		String cardType=null;
 		String trainer=null;
 		
-		switch(type){
+		switch(type)
+		{
 		case 1:
 			cardType ="Pokemon";
 			break;
@@ -68,7 +65,8 @@ public class TrainerCards extends Card {
 			break;			
 	}
 		
-		switch(trainerType){
+		switch(trainerType)
+		{
 		case 1:
 			trainer ="Item";
 			break;
@@ -88,12 +86,7 @@ public class TrainerCards extends Card {
 		+  "------------------------------- \n")
 		+"      "+getInfos()+"\n"
 		;
-		
-				
 				
 		return s;
 	}
-
-
-	
 }

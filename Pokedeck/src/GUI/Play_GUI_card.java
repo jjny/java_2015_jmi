@@ -6,6 +6,4 @@ public class Play_GUI_card {
 		GUI_card game=new GUI_card();
 		game.start();
 	}
-	
-
 }
