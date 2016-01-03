@@ -1,45 +1,37 @@
 package pokedeck;
 
-public class CardPokemon extends Card
+public class PokemonCard extends Card
 {
 	private static final long serialVersionUID = 1L;
 	protected int level;
 	protected int hp;
-	String name;
+	protected String name;
+	private String type="Pokemon" ;
 
-	public CardPokemon(int type, int numberCard, String name, int level, int hp)
+	public PokemonCard(String type, int numberCard, String name, int level, int hp)
 	{
-		super(type, numberCard);
+		super(numberCard);
+		this.type=type;
 		this.level=level;
 		this.hp=hp;
 		this.name=name;
 		// TODO Auto-generated constructor stub
 	}
 
-	public String getName() 
-	{
-		return name;
-	}
-
 	public void setName(String name) 
 	{
 		this.name = name;
-	}  
+	}  	
 	
-	
-	public int getLevel()
+	public int getLevel() 
 	{
 		return level;
 	}
 
+
 	public void setLevel(int level)
 	{
 		this.level = level;
-	}
-
-	public int getHp() 
-	{
-		return hp;
 	}
 
 	public void setHp(int hp)
@@ -56,35 +48,21 @@ public class CardPokemon extends Card
 	{
 		String s;
 		String lvl=null;
-		String cardType=null;
+		
 		if (level==1)
-			lvl="base (lvl 1)";
+			lvl="lvl 1(base)";
 		else
 			lvl=Integer.toString(this.getLevel());
 		
-		switch(type)
-		{
-		case 1:
-			cardType ="Pokemon";
-			break;
-		case 2:
-			cardType ="Energy";
-			break;
-		case 3:				
-			cardType ="Trainer";
-			break;			
-	}
-		
 		s=("-------------------------------- \n"
-		+  "          Type : "+cardType+     "\n"
-		+  "            Hp : "+this.getHp()+     "\n"
+		+  "          Type : "+type+     "\n"
+		+  "            Hp : "+hp+     "\n"
 		+  "         Level : "+lvl+     "\n"
-		+  "          Name : "+this.getName()+     "\n"
-		+  "        Number : "+this.getNumberCard()+     "\n"
+		+  "          Name : "+name+     "\n"
+		+  "        Number : "+numberCard+     "\n"
 		+  "------------------------------- \n");
 		
 		return s;
 	}
-
 }
 
