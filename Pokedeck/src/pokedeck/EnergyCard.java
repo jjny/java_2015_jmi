@@ -1,20 +1,18 @@
 package pokedeck;
 
-public class EnergyCards extends Card 
+public class EnergyCard extends Card 
 {
 	
 	private static final long serialVersionUID = 1L;
 	private int energyType;
+	private String type="Energy" ;
 	
-	public EnergyCards(int type, int numberCard,  int energyType) 
+	
+	public EnergyCard(String type, int numberCard,  int energyType) 
 	{
-		super(type, numberCard);
+		super(numberCard);	
+		this.type=type;
 		this.energyType= energyType;
-	}
-
-	public int getEnergyType() 
-	{
-		return energyType;
 	}
 
 	public void setEnergyType(int energyType)
@@ -26,19 +24,6 @@ public class EnergyCards extends Card
 	{
 		String s;
 		String energy=null;
-		String cardType=null;
-		
-		switch(type){
-		case 1:
-			cardType ="Pokemon";
-			break;
-		case 2:
-			cardType ="Energy";
-			break;
-		case 3:				
-			cardType ="Trainer";
-			break;			
-	}
 		
 		switch(energyType){
 		case 1:
@@ -77,12 +62,11 @@ public class EnergyCards extends Card
 	}
 			
 		s=("-------------------------------- \n"
-		+  "          Type : "+cardType+     "\n"
+		+  "          Type : "+type+     "\n"
 		+  "   Energy Type : "+energy+     "\n"
-		+  "        Number : "+this.getNumberCard()+     "\n"
+		+  "        Number : "+numberCard+     "\n"
 		+  "------------------------------- \n");
-				
-				
+								
 		return s;
 	}
 }

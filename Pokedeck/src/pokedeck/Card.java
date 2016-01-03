@@ -16,20 +16,15 @@ public class Card implements Serializable
 	protected String infos;
 
 	
-	public Card (int type,int numberCard)
+	public Card (/*int type,*/int numberCard)
 	{
-		this.setType(type);
+		//this.setType(type);
 		this.setNumberCard(numberCard);
 	}
 
 	public int getType()
 	{
 		return type;
-	}
-
-	public void setType(int type)
-	{
-		this.type = type;
 	}
 
 	public int getNumberCard()
@@ -42,61 +37,28 @@ public class Card implements Serializable
 		this.numberCard = numberCard;
 	}
 
-	public String getName() {
-		return name;
-	}
-
 	public void setName(String name) {
 		this.name = name;
-	}
-	
-	public int getLevel() 
-	{
-		return type;
 	}
 
 	public void setLevel(int lvl) {
 		this.level = lvl;
 	}
-	
-	public int getHp() 
-	{
-		return hp;
-	}
-
 
 	public void setHp(int hp) 
 	{
 		this.hp = hp;
 	}
-	
-	public int getEnergyType()
-	{
-		return energyType;
-	}
-
 
 	public void setEnergyType(int energyType)
 	{
 		this.energyType = energyType;
-	}
-	
-	public int getTrainerType() 
-	{
-		return trainerType;
 	}
 
 	public void setTrainerType(int trainerType) 
 	{
 		this.trainerType = trainerType;
 	}
-	
-	
-	public String getInfos() 
-	{
-		return infos;
-	}
-
 
 	public void setInfos(String infos) 
 	{

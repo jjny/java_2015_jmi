@@ -1,15 +1,20 @@
-package pokedeck;
+package MainPokedeck;
 
 import java.util.ArrayList;
 
-public class TestPokedeck 
+import pokedeck.Card;
+import pokedeck.Game;
+import pokedeck.Menu;
+import pokedeck.PlayerPokedeck;
+
+public class Main_Pokedeck 
 {
 	public static void main(String[] args)
 	{
-		Game m=new Game();
+		Game g=new Game();
 		ArrayList<Card> collection=new ArrayList<Card>();
 		PlayerPokedeck player = new PlayerPokedeck("pseudo_tmp",collection);
-		m.main_menu(player,collection);
+		g.playGame(player, collection);
 	}	
 }
 

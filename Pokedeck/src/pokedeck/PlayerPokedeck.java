@@ -17,24 +17,6 @@ public class PlayerPokedeck implements Serializable
 		this.cardGame=cardGame;
 	}
 	
-	public String getPseudo() 
-	{
-		return pseudo;
-	}
-	public void setPseudo(String pseudo)
-	{
-		this.pseudo = pseudo;
-	}
-	public ArrayList<Card> getCardGame() 
-	{
-		return cardGame;
-	}
-	public void setCardGame(ArrayList<Card> cardGame)
-	{
-		this.cardGame = cardGame;
-	}
-	
-	
 	/**
 	 * 
 	 *   ADD A CARD
@@ -44,14 +26,14 @@ public class PlayerPokedeck implements Serializable
 	 */
 	
 	public ArrayList<Card> addCardPokemon(ArrayList<Card> collect, int numberCard,String name,int level,int hp){
-		CardPokemon newPokemon=new CardPokemon(1,numberCard,name,level,hp);
+		PokemonCard newPokemon=new PokemonCard("Pokemon",numberCard,name,level,hp);
 		collect.add(newPokemon);
 		consultCardGame(collect);
 		return collect;	
 	}
 	
 	public ArrayList<Card> addCardEngery(ArrayList<Card> collect, int numberCard,int energyType){		
-		EnergyCards newPokemon=new EnergyCards(2,numberCard,energyType);
+		EnergyCard newPokemon=new EnergyCard("Energy",numberCard,energyType);
 		collect.add(newPokemon);
 		consultCardGame(collect);
 		return collect;
@@ -59,7 +41,7 @@ public class PlayerPokedeck implements Serializable
 	}
 	
 	public ArrayList<Card> addCardTrainer(ArrayList<Card> collect, int numberCard,String name,int trainerType, String infos){		
-		TrainerCards newPokemon=new TrainerCards(3,numberCard,name,trainerType, infos);
+		TrainerCard newPokemon=new TrainerCard("Trainer",numberCard,name,trainerType, infos);
 		collect.add(newPokemon);
 		consultCardGame(collect);
 		return collect;
