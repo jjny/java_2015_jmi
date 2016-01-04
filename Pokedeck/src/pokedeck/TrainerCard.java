@@ -6,12 +6,12 @@ public class TrainerCard extends Card
 	private int trainerType;
 	private String name;
 	private String infos;
-	private String type="Trainer" ;
 
-	public TrainerCard(String type, int numberCard, String name, int trainerType, String infos) 
+
+	public TrainerCard(int numberCard, String name, int trainerType, String infos) 
 	{
 		super(numberCard);
-		this.type=type;
+		this.type=TypeCard.Trainer;
 		this.name=name;
 		this.trainerType=trainerType;
 		this.infos=infos;

@@ -6,10 +6,11 @@ public class Card implements Serializable
 {
 	
 	private static final long serialVersionUID = 1L;
-	protected int type;
+	protected TypeCard type;
+	protected int typePokemon;
 	protected int numberCard;
 	protected String name;
-	protected int level;
+	//protected int level;
 	protected int hp;
 	protected int energyType;
 	protected int trainerType;
@@ -22,10 +23,16 @@ public class Card implements Serializable
 		this.setNumberCard(numberCard);
 	}
 
-	public int getType()
+	public TypeCard getType()
 	{
 		return type;
 	}
+	
+	public int getTypePokemon()
+	{
+		return typePokemon;
+	}
+
 
 	public int getNumberCard()
 	{
@@ -41,9 +48,9 @@ public class Card implements Serializable
 		this.name = name;
 	}
 
-	public void setLevel(int lvl) {
+	/*public void setLevel(int lvl) {
 		this.level = lvl;
-	}
+	}*/
 
 	public void setHp(int hp) 
 	{

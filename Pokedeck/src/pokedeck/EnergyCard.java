@@ -5,13 +5,13 @@ public class EnergyCard extends Card
 	
 	private static final long serialVersionUID = 1L;
 	private int energyType;
-	private String type="Energy" ;
+	//private TypeCard type="Energy" ;
 	
 	
-	public EnergyCard(String type, int numberCard,  int energyType) 
+	public EnergyCard( int numberCard,  int energyType) 
 	{
 		super(numberCard);	
-		this.type=type;
+		this.type=TypeCard.Energy;
 		this.energyType= energyType;
 	}
 
@@ -23,41 +23,41 @@ public class EnergyCard extends Card
 	public String toString()
 	{
 		String s;
-		String energy=null;
+		EnergyTypes energy=null;
 		
 		switch(energyType){
 		case 1:
-			energy ="Grass";
+			energy =EnergyTypes.Grass;
 			break;
 		case 2:
-			energy ="Fire";
+			energy =EnergyTypes.Fire;
 			break;
 		case 3:				
-			energy ="Water";
+			energy =EnergyTypes.Water;
 			break;	
 		case 4:
-			energy="Lightning";
+			energy=EnergyTypes.Lightning;
 			break;
 		case 5:
-			energy ="Psychic";
+			energy =EnergyTypes.Psychic;
 			break;
 		case 6:				
-			energy ="Fighting";
+			energy =EnergyTypes.Fighting;
 			break;
 		case 7:
-			energy ="Drakness";
+			energy =EnergyTypes.Darkness;
 			break;
 		case 8:				
-			energy ="Metal";
+			energy =EnergyTypes.Metal;
 			break;	
 		case 9:
-			energy ="Fairy";
+			energy =EnergyTypes.Fairy;
 			break;
 		case 10:
-			energy ="Dragon";
+			energy =EnergyTypes.Dragon;
 			break;
 		case 11:				
-			energy ="Colorless";
+			energy =EnergyTypes.Colorless;
 			break;		
 	}
 			

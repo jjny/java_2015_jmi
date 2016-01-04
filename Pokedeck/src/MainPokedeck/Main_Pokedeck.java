@@ -13,8 +13,7 @@ public class Main_Pokedeck
 	{
 		Game g=new Game();
 		ArrayList<Card> collection=new ArrayList<Card>();
-		PlayerPokedeck player = new PlayerPokedeck("pseudo_tmp",collection);
-		g.playGame(player, collection);
+		g.playGame( collection);
 	}	
 }
 

@@ -3,16 +3,16 @@ package pokedeck;
 public class PokemonCard extends Card
 {
 	private static final long serialVersionUID = 1L;
-	protected int level;
+	protected StagePokemon stage;
 	protected int hp;
 	protected String name;
-	private String type="Pokemon" ;
 
-	public PokemonCard(String type, int numberCard, String name, int level, int hp)
+
+	public PokemonCard(int numberCard, String name, StagePokemon stage, int hp)
 	{
 		super(numberCard);
-		this.type=type;
-		this.level=level;
+		this.type=TypeCard.Pokemon;
+		this.stage=stage;
 		this.hp=hp;
 		this.name=name;
 		// TODO Auto-generated constructor stub
@@ -22,16 +22,11 @@ public class PokemonCard extends Card
 	{
 		this.name = name;
 	}  	
-	
-	public int getLevel() 
-	{
-		return level;
-	}
 
 
-	public void setLevel(int level)
+	public void setStage(StagePokemon stage)
 	{
-		this.level = level;
+		this.stage= stage;
 	}
 
 	public void setHp(int hp)
@@ -49,15 +44,10 @@ public class PokemonCard extends Card
 		String s;
 		String lvl=null;
 		
-		if (level==1)
-			lvl="lvl 1(base)";
-		else
-			lvl=Integer.toString(this.getLevel());
-		
 		s=("-------------------------------- \n"
 		+  "          Type : "+type+     "\n"
 		+  "            Hp : "+hp+     "\n"
-		+  "         Level : "+lvl+     "\n"
+		+  "         Stage : "+stage+     "\n"
 		+  "          Name : "+name+     "\n"
 		+  "        Number : "+numberCard+     "\n"
 		+  "------------------------------- \n");

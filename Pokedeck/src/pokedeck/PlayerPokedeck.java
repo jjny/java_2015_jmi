@@ -10,11 +10,13 @@ public class PlayerPokedeck implements Serializable
 	private static final long serialVersionUID = 1L;
 	private String pseudo;
 	private ArrayList<Card> cardGame ;
+	private Game g=new Game();
 	
-	public PlayerPokedeck (String pseudo, ArrayList<Card> cardGame)
+	public PlayerPokedeck (String pseudo)
 	{
 		this.pseudo=pseudo;
-		this.cardGame=cardGame;
+	//	this.cardGame=cardGame;
+		ArrayList<Card> cardGame=new ArrayList<Card>(); 
 	}
 	
 	/**
@@ -25,15 +27,15 @@ public class PlayerPokedeck implements Serializable
 	 *  
 	 */
 	
-	public ArrayList<Card> addCardPokemon(ArrayList<Card> collect, int numberCard,String name,int level,int hp){
-		PokemonCard newPokemon=new PokemonCard("Pokemon",numberCard,name,level,hp);
+	public ArrayList<Card> addCardPokemon(ArrayList<Card> collect, int numberCard,String name,StagePokemon level,int hp){
+		PokemonCard newPokemon=new PokemonCard(numberCard,name,level,hp);
 		collect.add(newPokemon);
 		consultCardGame(collect);
 		return collect;	
 	}
 	
 	public ArrayList<Card> addCardEngery(ArrayList<Card> collect, int numberCard,int energyType){		
-		EnergyCard newPokemon=new EnergyCard("Energy",numberCard,energyType);
+		EnergyCard newPokemon=new EnergyCard(numberCard,energyType);
 		collect.add(newPokemon);
 		consultCardGame(collect);
 		return collect;
@@ -41,7 +43,7 @@ public class PlayerPokedeck implements Serializable
 	}
 	
 	public ArrayList<Card> addCardTrainer(ArrayList<Card> collect, int numberCard,String name,int trainerType, String infos){		
-		TrainerCard newPokemon=new TrainerCard("Trainer",numberCard,name,trainerType, infos);
+		TrainerCard newPokemon=new TrainerCard(numberCard,name,trainerType, infos);
 		collect.add(newPokemon);
 		consultCardGame(collect);
 		return collect;
@@ -83,10 +85,14 @@ public class PlayerPokedeck implements Serializable
 	 *  
 	 */
 	
-	public void consultCardGame(ArrayList<Card> collect)
-	{
-		for(Card obj: collect){
-			System.out.println(obj.toString());
+	public void consultCardGame(ArrayList<Card> collection)
+	{		
+		if(g.isEmpty(collection)==false){	
+			System.out.println("--------------------------------\n"
+							  +"------     CARD GAME      ------"	);
+			for(Card obj: collection){
+				System.out.println(obj);
+			}
 		}
 	}
 	
@@ -181,7 +187,7 @@ public class PlayerPokedeck implements Serializable
 		Card a=null;
 		while(ite.hasNext()){
 			 a = ite.next();
-			if(a.getType()==cardType)
+			if(a.getTypePokemon()==cardType)
 				System.out.println(a.toString());
 			else
 				a=null;

@@ -15,11 +15,12 @@ public class Menu{
 		try
 		{
 			//choice_mainMenu=0;
-								
-			System.out.println("[1] New card game\n"
-							  +"[2] Load(ne fonctionne pas )");
-			this.choice_mainMenu=choice.nextInt();
-			choice.nextLine();
+			//do{						
+				System.out.println("[1] New card game\n"
+								  +"[2] Load(ne fonctionne pas )");
+				this.choice_mainMenu=choice.nextInt();
+				choice.nextLine();
+			//}while(choice_mainMenu<1 ||choice_mainMenu>2);	
 		} 
 		catch (InputMismatchException e) 
 		{
@@ -28,10 +29,12 @@ public class Menu{
 			  				  +"----Try again----- \n"
 			  				  +"------------------\n");
 			    choice.nextLine();
+			    
 		} 
 		catch (Exception e)
 		{
 		  System.out.println(e);
+		  
 		}
 		return choice_mainMenu;
 		
@@ -63,6 +66,7 @@ public class Menu{
 		{
 			  System.out.println(e);
 		}
+		
 		return choice_submenu;
 	}
 	
@@ -115,7 +119,6 @@ public class Menu{
 	
 	
 	
-	
 	public int choiceCardType(){
 		int choice_card_type=0;	
 		try{
@@ -141,6 +144,7 @@ public class Menu{
 			  System.out.println(e);
 			}	
 		
+		
 		return choice_card_type;	
 	}
 	
@@ -156,7 +160,7 @@ public class Menu{
 		int energyType=0;
 		try{
 			do{
-				System.out.println("choice energy type : \n"
+				System.out.println("\n-- Choice energy type -- \n"
 					 + " [1] Grass \n"
 					 + " [2] Fire \n"
 					 + " [3] Water \n"
@@ -183,8 +187,68 @@ public class Menu{
 		catch (Exception e){
 			  System.out.println(e);
 			}	
+		
 			
 		return energyType;
+	}
+	
+	
+	public int choiceTrainerType(){
+		int typeTrainer=0;
+		try{
+			do{
+				
+				System.out.println("\n- Choice new trainer type --\n"
+										 + "\n [1] Item \n"
+										 + " [2] Supporter \n"
+										 + " [3] Stadium \n");
+						typeTrainer = choice.nextInt();
+						choice.nextLine();
+				}while(typeTrainer<1||typeTrainer>3);
+					
+				}catch (InputMismatchException e) {
+					System.out.println("------------------\n"
+					  				  +"--Invalid value!--\n"
+					  				  +"----Try again----- \n"
+					  				  +"------------------\n");
+				    choice.nextLine();
+				    choiceTrainerType();
+				} 
+				catch (Exception e){
+					  System.out.println(e);
+					}	
+		
+			
+		return typeTrainer;
+	}
+	
+	
+	public int MenuStage(){
+		int stage=0;
+		try{
+			do{
+				System.out.println("-- Choice stage --\n"
+					 + " [1] Basic \n"
+					 + " [2] Stage 1\n"
+					 + " [3] Stage 2 \n");
+			stage=choice.nextInt();
+			choice.nextLine();
+			}while(stage<1 ||stage>3);
+		} 
+		catch (InputMismatchException e) {
+			System.out.println("------------------\n"
+			  				  +"--Invalid value!--\n"
+			  				  +"----Try again----- \n"
+			  				  +"------------------\n");
+			    choice.nextLine();
+			    choiceEnergyType();
+		} 
+		catch (Exception e){
+			  System.out.println(e);
+			}	
+		
+			
+		return stage;
 	}
 	
 	/**
@@ -197,7 +261,7 @@ public class Menu{
 		int change=0;
 		try{
 			do{
-				System.out.println("What field do you want change ?\n"
+				System.out.println("-- Choice field do you want change --\n"
 								 +"[1] Card number \n"
 								 +"[2] Card name\n"
 								 +"[3] Type trainer \n"
@@ -217,9 +281,75 @@ public class Menu{
 		catch (Exception e){
 			  System.out.println(e);
 			}	
+	
 		return change;
 	}
 	
+
+	/**
+	 * Pokemon cards menu to update 
+	 * 
+	 * @return chance
+	 */
+	public int update_menu_field_pokemon(){
+		int change=0;
+		try{
+			do{
+				System.out.println("-- Choice field do you want change --\n"
+								  +"[1] card number \n"
+								  +"[2] name\n"
+								  +"[3] stage\n");
+
+			change =choice.nextInt();
+			choice.nextLine();
+			}while(change<1||change>3);
+		} 
+		catch (InputMismatchException e) {
+			System.out.println("------------------\n"
+			  				  +"--Invalid value!--\n"
+			  				  +"----Try again----- \n"
+			  				  +"------------------\n");
+			    choice.nextLine();
+			    update_menu_field_pokemon();
+		} 
+		catch (Exception e){
+			  System.out.println(e);
+			}	
+		return change;
+		
+	}
+	
+	/**
+	 * Energy cards menu to update 
+	 * 
+	 * @return chance
+	 */
+	
+	public int update_menu_field_energy(){
+		int change=0;
+		try{
+			do{
+				System.out.println("-- Choice field do you want change --\n"
+								  +"[1] Card number \n"
+								  +"[2] Energy type\n");
+	
+				change =choice.nextInt();
+				choice.nextLine();
+			}while(change<1||change>2);
+		} 
+		catch (InputMismatchException e) {
+			System.out.println("------------------\n"
+			  				  +"--Invalid value!--\n"
+			  				  +"----Try again----- \n"
+			  				  +"------------------\n");
+			    choice.nextLine();
+			    update_menu_field_energy();
+		} 
+		catch (Exception e){
+			  System.out.println(e);
+			}	
+		return change;
+	}
 
 	
 }
