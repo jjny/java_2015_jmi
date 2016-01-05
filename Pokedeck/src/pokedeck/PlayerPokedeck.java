@@ -12,11 +12,21 @@ public class PlayerPokedeck implements Serializable
 	private ArrayList<Card> cardGame ;
 	private Game g=new Game();
 	
-	public PlayerPokedeck (String pseudo)
+	public PlayerPokedeck (){}
+	
+	public PlayerPokedeck (String pseudo,ArrayList<Card> cardGame)
 	{
 		this.pseudo=pseudo;
-	//	this.cardGame=cardGame;
-		ArrayList<Card> cardGame=new ArrayList<Card>(); 
+		cardGame=new ArrayList<Card>(); 
+	}
+	
+	
+	public String getPseudo(){
+		return pseudo;
+	}
+	
+	public ArrayList<Card> getCardGame(){
+		return cardGame;
 	}
 	
 	/**
@@ -87,12 +97,16 @@ public class PlayerPokedeck implements Serializable
 	
 	public void consultCardGame(ArrayList<Card> collection)
 	{		
-		if(g.isEmpty(collection)==false){	
+		if(!collection.isEmpty()){	
 			System.out.println("--------------------------------\n"
 							  +"------     CARD GAME      ------"	);
 			for(Card obj: collection){
 				System.out.println(obj);
 			}
+		}else{
+			System.out.println("\n--------------------------------"
+			          +"\n-- Your card game is empty !! --"
+			          +"\n--------------------------------\n\n");
 		}
 	}
 	
@@ -157,43 +171,36 @@ public class PlayerPokedeck implements Serializable
 	 *  
 	 */
 
-	public void searchCardByType(String type,ArrayList<Card> collect)
+	public void searchCardByType(int type,ArrayList<Card> collect)
 	{
-		int cardType = 0;
-		
-		switch(type){
-			case "Pokemon":  
-				cardType =1;
-				break;				
-			case "Energy":
-				cardType =2;
-				break;
-			case "Trainer":				
-				cardType =3;
-				break;	
+		TypeCard cardType=null;
 				
-			case "pokemon":  
-				cardType =1;
+		switch(type)
+		{
+			case 1:  
+				cardType =TypeCard.Pokemon;
 				break;				
-			case "energy":
-				cardType =2;
+			case 2:
+				cardType =TypeCard.Energy;
 				break;
-			case "trainer":				
-				cardType =3;
-				break;		
+			case 3:				
+				cardType =TypeCard.Trainer;
+				break;							
 		}
-		
+				
 		ListIterator<Card> ite=collect.listIterator();
 		Card a=null;
-		while(ite.hasNext()){
+		while(ite.hasNext())
+		{
 			 a = ite.next();
-			if(a.getTypePokemon()==cardType)
+			 if(a.getType()==cardType)
 				System.out.println(a.toString());
-			else
+			 else
 				a=null;
 		}	
 		if(a==null)
-			System.out.println("No card correspond to it card type \n\n");
-	}
+			System.out.println("No card correspond to it card type \n\n");		
+		System.out.println(a);
+	}		
 }
 
