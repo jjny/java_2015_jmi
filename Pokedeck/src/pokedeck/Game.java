@@ -18,7 +18,6 @@ public class Game implements Serializable{
 	private static String nameFile;
 	private static Scanner choice=new Scanner(System.in);
 	private static Menu m=new Menu();
-	private static PlayerPokedeck p;
 	
 	/**
 	 *   Main menu
@@ -28,28 +27,27 @@ public class Game implements Serializable{
 	 *  
 	 */
 	
-	public static void playGame( ArrayList<Card> collection){
-		System.out.println("Enter your pokedeck name : ");
-		String playerName = choice.next();
-		p = new PlayerPokedeck(playerName);
-		System.out.println("-------------------------------\n");
-		main_menu_processing(p,collection);
+	public static void playGame( ){	
+		main_menu_processing();
 	}
 
 	
-	public static void main_menu_processing(PlayerPokedeck player, ArrayList<Card> collection){
+	public static void main_menu_processing(){
 		int choice_mainMenu=m.main_menu();		
 		
 		if(choice_mainMenu==1)
 		{
-		
-			choice.nextLine();
-			submenu_processing(player,collection);
+			System.out.println("Enter your pokedeck name : ");
+			String playerName = choice.next();
+			ArrayList<Card> collection=new ArrayList<Card>();
+			PlayerPokedeck p = new PlayerPokedeck(playerName,collection);
+			System.out.println("-------------------------------\n");
 			
+			choice.nextLine();
+			submenu_processing(p,collection);		
 		}
 		if(choice_mainMenu==2)
 		{	
-			choice.nextLine();
 			System.out.println("\n---- Enter file name ------");
 			nameFile=choice.nextLine();
 			 load(nameFile);			
@@ -59,7 +57,10 @@ public class Game implements Serializable{
 	
 	
 	public static void submenu_processing(PlayerPokedeck player, ArrayList<Card> collection){
+		
+		
 		int choice_submenu=m.submenu();		
+		
 			if(choice_submenu==1)		
 				add(player,collection);						
 			else if (choice_submenu==2 )
@@ -74,9 +75,12 @@ public class Game implements Serializable{
 				save(player,collection);				
 			else if(choice_submenu==7)
 			{
+				
 				System.out.println("\n----------------------"
 								  +"\n-----  GOOD BYE  -----"
 				                  +"\n----------------------");
+				
+				
 				System.exit(0);			
 			}
 			else
@@ -88,7 +92,7 @@ public class Game implements Serializable{
 	
 	public static boolean isEmpty(ArrayList<Card> collection)
 	{	
-		if(collection.size()==0)
+		if(collection.isEmpty())
 		{
 			System.out.println("\n--------------------------------"
 					          +"\n-- Your card game is empty !! --"
@@ -124,7 +128,7 @@ public class Game implements Serializable{
 			else if(choice_subMenu_search==3)
 				search_name(player,collection);		
 			else			
-				submenu_processing(player, collection);		
+				submenu_processing(player,collection);		
 		}
 	}
 	
@@ -182,7 +186,7 @@ public class Game implements Serializable{
 		else if	(choice_card_type==3)	
 			add_trainer(player,collection);
 		else
-			submenu_processing(player, collection);	
+			submenu_processing(player,collection);	
 	}
 	
 	public static void add_pokemon(PlayerPokedeck player,ArrayList<Card> collection){
@@ -520,10 +524,10 @@ public class Game implements Serializable{
 	
 
 	
-	public static void search_type(PlayerPokedeck player, ArrayList<Card> collection){
-		System.out.println("Card type : pokemon, energy or trainer ??");
-		String typeCard=choice.nextLine();					
-		player.searchCardByType(typeCard, collection);	
+	public static void search_type(PlayerPokedeck player, ArrayList<Card> collection)
+	{
+		int choice=m.choiceCardType();
+		player.searchCardByType(choice, collection);
 	}
 	
 	public static void search_number(PlayerPokedeck player, ArrayList<Card> collection){
@@ -573,23 +577,30 @@ public class Game implements Serializable{
 
 
 	public static void save(PlayerPokedeck player, ArrayList<Card> collection){
-		try 
-		{				
-			System.out.println("\n---- Enter recording name ------");
-			String fileName=choice.nextLine();
-			
-			FileOutputStream file = new FileOutputStream("src/save/"+fileName+".dat");
-			ObjectOutputStream oos = new ObjectOutputStream(file);
-			oos.writeObject(collection);
-			oos.flush();
-			oos.close();
-		} 
-		catch (IOException e)
-		{
-			e.printStackTrace();		
-		}	
-		System.out.println("Sauvegarde réussie!");
+		if(!isEmpty(collection))
+		{		
+			try 
+			{				
+				System.out.println("\n---- Enter recording name ------");
+				String fileName=choice.nextLine();
+				
+				FileOutputStream file = new FileOutputStream("src/save/"+fileName+".dat");
+				ObjectOutputStream oos = new ObjectOutputStream(file);
+				
+				ObjectOutputStream oos2 = new ObjectOutputStream(file);
+				oos.writeObject(collection);
+				oos2.writeObject(player);
+				oos.flush();
+				oos.close();
+			} 
+			catch (IOException e)
+			{
+				e.printStackTrace();		
+			}	
+			System.out.println("Sauvegarde réussie!");
+		}
 		m.submenu();
+		
 	} 
 	
 	
@@ -609,15 +620,25 @@ public class Game implements Serializable{
 		{
 			
 			FileInputStream file = new FileInputStream("src/save/"+nomFichier+".dat");
-			ObjectInputStream ois = new ObjectInputStream(file);			
+			ObjectInputStream ois = new ObjectInputStream(file);
+			ObjectInputStream ois2 = new ObjectInputStream(file);	
 			
 			ArrayList<Card> collection= (ArrayList<Card>) ois.readObject();
+			PlayerPokedeck pseudo =(PlayerPokedeck) ois2.readObject();
 			
 			ois.close();
-
-			p.consultCardGame(collection);
-			submenu_processing(p,collection);
 			
+			System.out.println("\n--------------------------------"
+						  	  +"\n--------- Game loaded! ---------"
+	  				          +"\n--------------------------------\n");	  				          
+			
+			pseudo.consultCardGame(collection);	
+			
+			System.out.println("\n -------- Welcome "+pseudo.getPseudo()+"--------\n");
+	
+			
+			submenu_processing(pseudo,collection);
+		
 		}
 		catch (java.io.IOException e) 
 		{
