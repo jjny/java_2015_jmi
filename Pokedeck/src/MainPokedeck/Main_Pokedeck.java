@@ -12,8 +12,8 @@ public class Main_Pokedeck
 	public static void main(String[] args)
 	{
 		Game g=new Game();
-		ArrayList<Card> collection=new ArrayList<Card>();
-		g.playGame( collection);
+		g.playGame();
 	}	
 }
+
 
