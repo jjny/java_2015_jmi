@@ -15,9 +15,9 @@ public class Game implements Serializable{
 
 
 	private static final long serialVersionUID = 1L;
-	private String nameFile;
-	private Scanner choice=new Scanner(System.in);
-	private Menu m=new Menu();
+	private static String nameFile;
+	private static Scanner choice=new Scanner(System.in);
+	private static Menu m=new Menu();
 	private static PlayerPokedeck p;
 	
 	/**
@@ -28,7 +28,7 @@ public class Game implements Serializable{
 	 *  
 	 */
 	
-	public void playGame( ArrayList<Card> collection){
+	public static void playGame( ArrayList<Card> collection){
 		System.out.println("Enter your pokedeck name : ");
 		String playerName = choice.next();
 		p = new PlayerPokedeck(playerName);
@@ -37,7 +37,7 @@ public class Game implements Serializable{
 	}
 
 	
-	public void main_menu_processing(PlayerPokedeck player, ArrayList<Card> collection){
+	public static void main_menu_processing(PlayerPokedeck player, ArrayList<Card> collection){
 		int choice_mainMenu=m.main_menu();		
 		
 		if(choice_mainMenu==1)
@@ -51,15 +51,14 @@ public class Game implements Serializable{
 		{	
 			choice.nextLine();
 			System.out.println("\n---- Enter file name ------");
-			this.nameFile=choice.nextLine();
-			//choice.nextLine();
+			nameFile=choice.nextLine();
 			 load(nameFile);			
 		}else
 			m.main_menu();		
 	}
 	
 	
-	public void submenu_processing(PlayerPokedeck player, ArrayList<Card> collection){
+	public static void submenu_processing(PlayerPokedeck player, ArrayList<Card> collection){
 		int choice_submenu=m.submenu();		
 			if(choice_submenu==1)		
 				add(player,collection);						
@@ -100,7 +99,7 @@ public class Game implements Serializable{
 			return false;		
 	}
 	
-	public boolean test_exist(ArrayList<Card> collection,int numberCard){
+	public static boolean test_exist(ArrayList<Card> collection,int numberCard){
 		ListIterator<Card> ite=collection.listIterator();
 		boolean test=false;
 		while(ite.hasNext()){
@@ -112,7 +111,7 @@ public class Game implements Serializable{
 	}
 	
 	
-	public void submenu_search_processing(PlayerPokedeck player, ArrayList<Card> collection)
+	public static void submenu_search_processing(PlayerPokedeck player, ArrayList<Card> collection)
 	{
 		if(!isEmpty(collection))
 		{
@@ -129,35 +128,34 @@ public class Game implements Serializable{
 		}
 	}
 	
-
 	
 
-	public int addCardNumber(ArrayList<Card> collection)
+	public static int addCardNumber(ArrayList<Card> collection)
 	{	
 		int numberCard = 0;
 		boolean unique_cardNumber = false; 
 		try {
 			do{
-					System.out.println("\n-- Enter card number  --");
-					unique_cardNumber=false;
-					numberCard=choice.nextInt();
-					choice.nextLine();
-					ListIterator<Card> ite= collection.listIterator();
+				System.out.println("\n-- Enter card number  --");
+				unique_cardNumber=false;
+				numberCard=choice.nextInt();
+				choice.nextLine();
+				ListIterator<Card> ite= collection.listIterator();
 			
-					while(ite.hasNext())
+				while(ite.hasNext())
+				{
+					Card card_iterator =ite.next();
+					if(card_iterator.getNumberCard()==numberCard)
 					{
-						Card card_iterator =ite.next();
-						if(card_iterator.getNumberCard()==numberCard)
-						{
-							unique_cardNumber=true;
-							System.out.println("This card number is already used, card number should be unique. "
-											 + "\n               Choose another card number");
-						}
+						unique_cardNumber=true;
+						System.out.println("This card number is already used, card number should be unique. "
+										 + "\n               Choose another card number");
 					}
-				}while(unique_cardNumber!=false);
-				
-			
-		}catch (InputMismatchException e) {
+				}
+			}while(unique_cardNumber!=false);
+		}
+		catch (InputMismatchException e) 
+		{
 		    System.out.println("------------------\n"
   				  +"--Invalid value!--\n"
   				  +"----Try again----- \n"
@@ -165,20 +163,17 @@ public class Game implements Serializable{
 			  choice.nextLine();
 			  addCardNumber(collection);
 		} 
-			catch (Exception e){
-				  System.out.println(e);
-				}
-			
-			
-				return numberCard;
-			
-		
-		
+		catch (Exception e)
+		{
+			 System.out.println(e);
+		}
+					
+		return numberCard;
 			
 	}
 	
 	
-	public void add(PlayerPokedeck player, ArrayList<Card> collection){	
+	public static void add(PlayerPokedeck player, ArrayList<Card> collection){	
 		int choice_card_type=m.choiceCardType();
 		if(choice_card_type==1)
 			add_pokemon(player,collection);
@@ -190,7 +185,7 @@ public class Game implements Serializable{
 			submenu_processing(player, collection);	
 	}
 	
-	public void add_pokemon(PlayerPokedeck player,ArrayList<Card> collection){
+	public static void add_pokemon(PlayerPokedeck player,ArrayList<Card> collection){
 		//int numberCard=0;
 		int hp=0;	
 
@@ -225,7 +220,7 @@ public class Game implements Serializable{
 		m.submenu();
 	}
 	
-	public StagePokemon stage_pokemon(PlayerPokedeck player,ArrayList<Card> collection){
+	public static StagePokemon stage_pokemon(PlayerPokedeck player,ArrayList<Card> collection){
 		int choice=m.MenuStage();
 		StagePokemon stage = null;
 		
@@ -245,7 +240,7 @@ public class Game implements Serializable{
 	}
 		
 
-	public void add_energy(PlayerPokedeck player,ArrayList<Card> collection){
+	public static void add_energy(PlayerPokedeck player,ArrayList<Card> collection){
 		int numberCard=0;
 		int energyType=0;
 		
@@ -268,7 +263,7 @@ public class Game implements Serializable{
 			}				
 	}
 	
-	public void add_trainer(PlayerPokedeck player,ArrayList<Card> collection){
+	public static void add_trainer(PlayerPokedeck player,ArrayList<Card> collection){
 		int numberCard=addCardNumber(collection);
 		int trainerType=m.choiceTrainerType();
 			
@@ -284,7 +279,7 @@ public class Game implements Serializable{
 
 	
 	
-	public void delete(PlayerPokedeck player, ArrayList<Card> collection){
+	public static void delete(PlayerPokedeck player, ArrayList<Card> collection){
 		if(!isEmpty(collection))
 		{
 			try
@@ -316,7 +311,7 @@ public class Game implements Serializable{
 	
 
 
-	public int add_cardnumber(Card card_iterator){
+	public static int add_cardnumber(Card card_iterator){
 		int newNumberCard=0;
 		boolean unique_cardNumber; 
 		try{	
@@ -352,7 +347,7 @@ public class Game implements Serializable{
 	
 	
 	
-	public void update(PlayerPokedeck player, ArrayList<Card> collection){
+	public static void update(PlayerPokedeck player, ArrayList<Card> collection){
 		if(!isEmpty(collection)){
 			try{			
 				player.consultCardGame(collection);
@@ -384,7 +379,7 @@ public class Game implements Serializable{
 	}
 	
 	
-	public void update_card(PlayerPokedeck player, ArrayList<Card> collection, int numberCard){
+	public static void update_card(PlayerPokedeck player, ArrayList<Card> collection, int numberCard){
 		ListIterator<Card> ite= collection.listIterator();
 		while(ite.hasNext()){
 			Card card_iterator = ite.next();
@@ -402,7 +397,7 @@ public class Game implements Serializable{
 		player.consultCardGame(collection);
 	}
 	
-	public void update_pokemon(PokemonCard card_iterator, int numberCard,PlayerPokedeck player, ArrayList<Card> collection){
+	public static void update_pokemon(PokemonCard card_iterator, int numberCard,PlayerPokedeck player, ArrayList<Card> collection){
 		int change=m.update_menu_field_pokemon();
 		switch(change){
 		case 1:						
@@ -420,7 +415,7 @@ public class Game implements Serializable{
 		}	
 	}
 	
-	public void update_energy(Card card_iterator, int numberCard){
+	public static void update_energy(Card card_iterator, int numberCard){
 		int change=m.update_menu_field_energy();
 		
 		switch(change){
@@ -436,7 +431,7 @@ public class Game implements Serializable{
 			} 	
 	}
 	
-	public void update_trainer(Card card_iterator, int numberCard){
+	public static void update_trainer(Card card_iterator, int numberCard){
 		int change=m.update_menu_field_trainer();
 		
 		switch(change){
@@ -462,7 +457,7 @@ public class Game implements Serializable{
 	
 
 	
-	public void update_name(Card card_iterator, int numberCard)
+	public static void update_name(Card card_iterator, int numberCard)
 	{
 		if(card_iterator.getNumberCard()==numberCard)
 		{			
@@ -474,7 +469,7 @@ public class Game implements Serializable{
 	}
 	
 	
-	public void update_stage(PokemonCard card_iterator, int numberCard,PlayerPokedeck player, ArrayList<Card> collection )
+	public static void update_stage(PokemonCard card_iterator, int numberCard,PlayerPokedeck player, ArrayList<Card> collection )
 	{
 		int hp=0;
 		if(card_iterator.getNumberCard()==numberCard){
@@ -493,7 +488,7 @@ public class Game implements Serializable{
 		m.submenu();
 	}
 	
-	public void update_infos(Card card_iterator, int numberCard)
+	public static void update_infos(Card card_iterator, int numberCard)
 	{
 		if(card_iterator.getNumberCard()==numberCard)
 		{
@@ -504,7 +499,7 @@ public class Game implements Serializable{
 			m.submenu();
 	}
 	
-	public void update_menu_energyType(Card card_iterator, int numberCard)
+	public static void update_menu_energyType(Card card_iterator, int numberCard)
 	{
 		if(card_iterator.getNumberCard()==numberCard)
 		{			
@@ -514,7 +509,7 @@ public class Game implements Serializable{
 		m.submenu();	
 	}
 
-	public void update_menu_trainerType(Card card_iterator, int numberCard){
+	public static void update_menu_trainerType(Card card_iterator, int numberCard){
 		if(card_iterator.getNumberCard()==numberCard)
 		{
 			int typeTrainer=m.choiceTrainerType();
@@ -525,13 +520,13 @@ public class Game implements Serializable{
 	
 
 	
-	public void search_type(PlayerPokedeck player, ArrayList<Card> collection){
+	public static void search_type(PlayerPokedeck player, ArrayList<Card> collection){
 		System.out.println("Card type : pokemon, energy or trainer ??");
 		String typeCard=choice.nextLine();					
 		player.searchCardByType(typeCard, collection);	
 	}
 	
-	public void search_number(PlayerPokedeck player, ArrayList<Card> collection){
+	public static void search_number(PlayerPokedeck player, ArrayList<Card> collection){
 		int numberCard=-1;
 		try
 		{
@@ -556,7 +551,7 @@ public class Game implements Serializable{
 	}
 	
 	
-	public void search_name(PlayerPokedeck player, ArrayList<Card> collection){
+	public static void search_name(PlayerPokedeck player, ArrayList<Card> collection){
 		
 		System.out.println("\n------   Enter Card name -------");
 		
@@ -577,7 +572,7 @@ public class Game implements Serializable{
 	
 
 
-	public void save(PlayerPokedeck player, ArrayList<Card> collection){
+	public static void save(PlayerPokedeck player, ArrayList<Card> collection){
 		try 
 		{				
 			System.out.println("\n---- Enter recording name ------");
@@ -586,7 +581,6 @@ public class Game implements Serializable{
 			FileOutputStream file = new FileOutputStream("src/save/"+fileName+".dat");
 			ObjectOutputStream oos = new ObjectOutputStream(file);
 			oos.writeObject(collection);
-			//oos.writeObject(player);
 			oos.flush();
 			oos.close();
 		} 
@@ -594,7 +588,7 @@ public class Game implements Serializable{
 		{
 			e.printStackTrace();		
 		}	
-		System.out.println("Sauvegarde réussie!");
+		System.out.println("Sauvegarde rÃ©ussie!");
 		m.submenu();
 	} 
 	
@@ -615,15 +609,15 @@ public class Game implements Serializable{
 		{
 			
 			FileInputStream file = new FileInputStream("src/save/"+nomFichier+".dat");
-			ObjectInputStream ois = new ObjectInputStream(file);
-			//ObjectInputStream ois2 = new ObjectInputStream(file);
+			ObjectInputStream ois = new ObjectInputStream(file);			
 			
 			ArrayList<Card> collection= (ArrayList<Card>) ois.readObject();
-			//PlayerPokedeck playerPokedeck=(PlayerPokedeck) ois2.readObject();
 			
 			ois.close();
 
 			p.consultCardGame(collection);
+			submenu_processing(p,collection);
+			
 		}
 		catch (java.io.IOException e) 
 		{
@@ -633,16 +627,7 @@ public class Game implements Serializable{
 		{
 			e.printStackTrace();
 		}
-
 	}
 	
 	
-	/*public void save_processing(PlayerPokedeck player, ArrayList<Card> collection)
-	{
-		System.out.println("\n---- Enter recording name ------");
-			String name=choice.nextLine();
-			
-			save(name,player,collection);	
-	}
-	*/
 }
