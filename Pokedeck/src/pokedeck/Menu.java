@@ -13,14 +13,12 @@ public class Menu{
 	
 	public int main_menu(){
 		try
-		{
-			//choice_mainMenu=0;
-			//do{						
-				System.out.println("[1] New card game\n"
-								  +"[2] Load(ne fonctionne pas )");
-				this.choice_mainMenu=choice.nextInt();
-				choice.nextLine();
-			//}while(choice_mainMenu<1 ||choice_mainMenu>2);	
+		{					
+			System.out.println("[1] New card game\n"
+							  +"[2] Load(ne fonctionne pas )");
+			this.choice_mainMenu=choice.nextInt();
+			choice.nextLine();
+
 		} 
 		catch (InputMismatchException e) 
 		{
@@ -350,7 +348,5 @@ public class Menu{
 			}	
 		return change;
 	}
-
-	
 }
 
