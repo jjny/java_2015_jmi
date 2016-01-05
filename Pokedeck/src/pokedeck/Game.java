@@ -27,7 +27,7 @@ public class Game implements Serializable{
 	 *  
 	 */
 	
-	public static void playGame( ){	
+	public void playGame( ){	
 		main_menu_processing();
 	}
 
